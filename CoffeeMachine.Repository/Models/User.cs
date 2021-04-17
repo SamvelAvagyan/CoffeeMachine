@@ -1,8 +1,7 @@
 ﻿namespace CoffeeMachine.Repository.Models
 {
-    public class User
+    public class User : AbstractEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int Balance { get; set; }
     }

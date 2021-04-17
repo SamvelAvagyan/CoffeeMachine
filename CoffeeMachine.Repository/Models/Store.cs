@@ -1,6 +1,6 @@
 ﻿namespace CoffeeMachine.Repository.Models
 {
-    public class Store
+    public class Store : AbstractEntity
     {
         public double Water { get; set; }
         public double Sugar { get; set; }
