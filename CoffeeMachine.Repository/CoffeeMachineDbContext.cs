@@ -11,7 +11,6 @@ namespace CoffeeMachine.Repository
 
         public DbSet<Coffee> Coffees { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Store> Stores { get; set; }
         public DbSet<Order> Orders { get; set; }
     }
 }
