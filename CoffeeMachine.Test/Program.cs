@@ -17,10 +17,7 @@ namespace CoffeeMachine.Test
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
                 {
-                    services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-                    services.AddScoped<ICoffeeRepository, CoffeeRepository>();
-                    services.AddScoped<IStoreRepository, StoreRepository>();
-                    services.AddScoped<IUserRepository, UserRepository>();
+                    services.AddService(DataOptions.ConnectionString);
                 });
         }
     }
