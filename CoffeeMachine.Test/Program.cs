@@ -1,6 +1,4 @@
-﻿using CoffeeMachine.Repository;
-using CoffeeMachine.Repository.Impl;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace CoffeeMachine.Test
@@ -9,10 +7,10 @@ namespace CoffeeMachine.Test
     {
         static void Main(string[] args)
         {
-
+            CreateHostBuilder(args).Build().Run();
         }
 
-        private IHostBuilder CreateHostBuilder(string[] args)
+        private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
