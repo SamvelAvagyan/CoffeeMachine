@@ -3,9 +3,9 @@ using CoffeeMachine.Repository.Models;
 
 namespace CoffeeMachine.Services.Impl
 {
-    public class StoreService : BaseService<Store>, IStoreService
+    public class OrderService : BaseService<Order>, IOrderService
     {
-        public StoreService(IBaseRepository<Store> repo)
+        public OrderService(IBaseRepository<Order> repo)
             : base(repo)
         { }
     }

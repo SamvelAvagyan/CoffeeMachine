@@ -2,6 +2,6 @@
 
 namespace CoffeeMachine.Services
 {
-    public interface IStoreService : IBaseService<Store>
+    public interface IOrderService : IBaseService<Order>
     { }
 }
