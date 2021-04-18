@@ -13,7 +13,9 @@ namespace Microsoft.Extensions.DependencyInjection
             => services
                 .AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>))
                 .AddScoped<ICoffeeRepository, CoffeeRepository>()
-                .AddScoped<IUserRepository, UserRepository>();
+                .AddScoped<IIngredientRepository, IngredientRepository>()
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IOrderRepository, OrderRepository>();
 
         public static IServiceCollection AddRepository(this IServiceCollection services, string connectionString)
             => services

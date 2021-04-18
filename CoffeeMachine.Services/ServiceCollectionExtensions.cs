@@ -9,7 +9,9 @@ namespace Microsoft.Extensions.DependencyInjection
             => services
                 .AddScoped(typeof(IBaseService<>), typeof(BaseService<>))
                 .AddScoped<ICoffeeService, CoffeeService>()
+                .AddScoped<IIngredientService, IngredientService>()
                 .AddScoped<IUserService, UserService>()
+                .AddScoped<IOrderService, OrderService>();
 
         public static IServiceCollection AddService(this IServiceCollection services, string connectionString)
             => services
