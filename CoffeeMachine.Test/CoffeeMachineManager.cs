@@ -35,7 +35,7 @@ namespace CoffeeMachine.Test
             Console.WriteLine($"{user.Name}, {order.User.Name}, {order.UserId}");
         }
 
-        public static void InsertCoins()
+        public static bool InsertCoins()
         {
             Console.Write("Please, insert coin (50, 100, 200, 500) (Type enter to finish this action): ");
             string c;
@@ -45,7 +45,6 @@ namespace CoffeeMachine.Test
 
             do
             {
-
                 c = Console.ReadLine();
                 if (c == "")
                 {
@@ -68,7 +67,15 @@ namespace CoffeeMachine.Test
                 sum += coin;
             } while (true);
 
-            Console.WriteLine(sum);
+            if(user.Balance < sum)
+            {
+                Console.WriteLine("You don't have enough money in your balance");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
