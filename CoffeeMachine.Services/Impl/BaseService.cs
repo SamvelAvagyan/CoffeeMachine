@@ -1,9 +1,11 @@
 ﻿using CoffeeMachine.Repository;
+using CoffeeMachine.Repository.Models;
 using System.Collections.Generic;
 
 namespace CoffeeMachine.Services.Impl
 {
     public class BaseService<T> : IBaseService<T>
+        where T : AbstractEntity
     {
         private readonly IBaseRepository<T> repo;
 

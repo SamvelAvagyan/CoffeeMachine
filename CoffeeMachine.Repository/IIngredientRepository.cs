@@ -3,5 +3,7 @@
 namespace CoffeeMachine.Repository
 {
     public interface IIngredientRepository : IBaseRepository<Ingredient>
-    { }
+    {
+        Ingredient GetByName(string name);
+    }
 }

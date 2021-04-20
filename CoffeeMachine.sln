@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeMachine.Test", "Coffe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeMachine.Repository", "CoffeeMachine.Repository\CoffeeMachine.Repository.csproj", "{1931CC3E-5D45-4E5C-A729-E548159A481E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine.Services", "CoffeeMachine.Services\CoffeeMachine.Services.csproj", "{1978475D-7DD1-4553-8D41-991FD9E68F8B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{1931CC3E-5D45-4E5C-A729-E548159A481E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1931CC3E-5D45-4E5C-A729-E548159A481E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1931CC3E-5D45-4E5C-A729-E548159A481E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1978475D-7DD1-4553-8D41-991FD9E68F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1978475D-7DD1-4553-8D41-991FD9E68F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1978475D-7DD1-4553-8D41-991FD9E68F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1978475D-7DD1-4553-8D41-991FD9E68F8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

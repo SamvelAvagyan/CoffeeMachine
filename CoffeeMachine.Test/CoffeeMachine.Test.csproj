@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoffeeMachine.Services\CoffeeMachine.Services.csproj" />
+    <ProjectReference Include="..\CoffeeMachine.Repository\CoffeeMachine.Repository.csproj" />
   </ItemGroup>
 
 </Project>
