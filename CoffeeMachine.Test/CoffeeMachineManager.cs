@@ -9,6 +9,7 @@ namespace CoffeeMachine.Test
     {
         public static IUserRepository userRepo = Program.serviceProvider.GetService<IUserRepository>();
         public static ICoffeeRepository coffeeRepo = Program.serviceProvider.GetService<ICoffeeRepository>();
+        public static IIngredientRepository ingredientRepo = Program.serviceProvider.GetService<IIngredientRepository>();
         private static Order order;
         private static User user;
         private static Coffee coffee;
@@ -109,6 +110,33 @@ namespace CoffeeMachine.Test
             coffee = coffeeRepo.GetById(id);
             order.Coffee = coffee;
             order.CoffeeId = coffee.Id;
+        }
+
+        private static bool CheckIngredients(string name)
+        {
+            switch (name)
+            {
+                case "Sugar":
+                    if(coffee.SugarPortion <= ingredientRepo.GetByName(name).Quantity)
+                        return true;
+                    else
+                        return false;
+
+                case "Coffee":
+                    if (coffee.CoffeePortion <= ingredientRepo.GetByName(name).Quantity)
+                        return true;
+                    else
+                        return false;
+
+                case "Water":
+                    if (coffee.WaterPortion <= ingredientRepo.GetByName(name).Quantity)
+                        return true;
+                    else
+                        return false;
+
+                default:
+                    return false;
+            }
         }
     }
 }
