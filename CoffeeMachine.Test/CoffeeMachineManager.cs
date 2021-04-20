@@ -11,6 +11,8 @@ namespace CoffeeMachine.Test
         public static ICoffeeRepository coffeeRepo = Program.serviceProvider.GetService<ICoffeeRepository>();
         private static Order order;
         private static User user;
+        private static Coffee coffee;
+        private static int sum = 0;
 
         public static void SelectUser()
         {
@@ -40,7 +42,6 @@ namespace CoffeeMachine.Test
             Console.Write("Please, insert coin (50, 100, 200, 500) (Type enter to finish this action): ");
             string c;
             int coin;
-            int sum = 0;
             bool t;
 
             do
@@ -76,6 +77,38 @@ namespace CoffeeMachine.Test
             {
                 return true;
             }
+        }
+
+        public static void SelectCoffee()
+        {
+            Console.Write("Please, insert coffe id: ");
+            string a;
+            int id;
+
+            do
+            {
+                a = Console.ReadLine();
+
+                if(a == "")
+                {
+
+                }
+
+                int.TryParse(a, out id);
+
+                if (id == 0 || coffeeRepo.GetById(id) == null)
+                {
+                    Console.Write("Please, insert correct id: ");
+                }
+                else if(sum > coffeeRepo.GetById(id).Price)
+                {
+                    Console.Write("You didn't insert enough money for this coffee, please choose another coffee or type \"enter\" to restart inserting money: ");
+                }
+            } while (id == 0 || coffeeRepo.GetById(id) == null || sum > coffeeRepo.GetById(id).Price);
+
+            coffee = coffeeRepo.GetById(id);
+            order.Coffee = coffee;
+            order.CoffeeId = coffee.Id;
         }
     }
 }
