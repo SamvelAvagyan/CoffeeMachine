@@ -14,6 +14,8 @@ namespace CoffeeMachine.Test
         static void Main(string[] args)
         {
             Configure();
+            //CreateCoffees(10);
+            //CreateUsers(2);
             CoffeeMachineManager.ShowUsers();
             CoffeeMachineManager.ShowCoffees();
 
@@ -42,11 +44,11 @@ namespace CoffeeMachine.Test
             {
                 CoffeeMachineManager.coffeeRepo.Add(new Coffee()
                 {
-                    Name = $"User{i + 1}",
-                    CoffeePortion = Math.Round(rnd.NextDouble(), 2),
+                    Name = $"Coffee{i + 1}",
+                    CoffeePortion = Math.Round(rnd.NextDouble(), 1),
                     Price = rnd.Next(1, 5) * 100,
-                    SugarPortion = Math.Round(rnd.NextDouble(), 2),
-                    WaterPortion = Math.Round(rnd.NextDouble(), 2)
+                    SugarPortion = Math.Round(rnd.NextDouble(), 1),
+                    WaterPortion = Math.Round(rnd.NextDouble(), 1)
                 });
             }
         }
@@ -59,7 +61,7 @@ namespace CoffeeMachine.Test
             {
                 CoffeeMachineManager.userRepo.Add(new User()
                 {
-                    Name = $"Coffee{i + 1}",
+                    Name = $"User{i + 1}",
                     Balance = rnd.Next(2, 5) * 100
                 });
             }

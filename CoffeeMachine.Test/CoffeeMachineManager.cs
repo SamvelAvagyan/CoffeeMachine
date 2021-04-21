@@ -104,7 +104,7 @@ namespace CoffeeMachine.Test
                 }
                 else if (sum > coffeeRepo.GetById(id).Price)
                 {
-                    Console.Write("You didn't insert enough money for this coffee, please choose another coffee or type \"enter\" to restart: ");
+                    Console.Write("You didn't insert enough money for this coffee, please choose another coffee or type enter to restart: ");
                 }
             } while (id == 0 || coffeeRepo.GetById(id) == null || sum > coffeeRepo.GetById(id).Price);
 
@@ -179,6 +179,13 @@ namespace CoffeeMachine.Test
             }
         }
 
+        private static void StartFromSelectingCoffee()
+        {
+            SelectCoffee();
+            Ready();
+            AskToEnterZero();
+        }
+
         private static void Ready()
         {
             Console.WriteLine("Ready!");
@@ -189,25 +196,25 @@ namespace CoffeeMachine.Test
 
         private static void AskToEnterZero()
         {
-            Console.Write("If you want to change or choose another coffee, then enter 0, else type \"enter\": ");
+            Console.Write("If you want to change or choose another coffee, then enter 0, else type enter: ");
             string a;
 
             do
             {
                 a = Console.ReadLine();
 
-                if (a != "0" || a != "")
+                if (a != "0" && a != "")
                 {
-                    Console.Write("Please, type 0 or \"enter\": ");
+                    Console.Write("Please, type 0 or enter: ");
                 }
-            } while (a != "0" || a != "");
+            } while (a != "0" && a != "");
 
             if (a == "0")
             {
                 user.Balance += coffee.Price;
                 userRepo.Update(user);
                 orderRepo.Delete(order.Id);
-                StartFromInsertingCoins();
+                StartFromSelectingCoffee();
             }
         }
 
@@ -233,7 +240,7 @@ namespace CoffeeMachine.Test
             {
                 Console.WriteLine($"Id: {coffee.Id}, Name: {coffee.Name}, Price: {coffee.Price}, WaterPortion: {coffee.WaterPortion}" +
                     $", SugarPortion: {coffee.SugarPortion}, CoffeePortion: {coffee.CoffeePortion}");
-                Console.WriteLine("---------------------------------------------------------------------------------");
+                Console.WriteLine("--------------------------------------------------------------------------------");
             }
 
             Console.WriteLine("==========================================================================");
