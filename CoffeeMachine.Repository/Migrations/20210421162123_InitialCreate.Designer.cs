@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeeMachine.Repository.Migrations
 {
     [DbContext(typeof(CoffeeMachineDbContext))]
-    [Migration("20210418113440_DeleteStoreAndAddIngredients")]
-    partial class DeleteStoreAndAddIngredients
+    [Migration("20210421162123_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

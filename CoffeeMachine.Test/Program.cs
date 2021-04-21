@@ -14,8 +14,11 @@ namespace CoffeeMachine.Test
         static void Main(string[] args)
         {
             Configure();
+
             //CreateCoffees(10);
             //CreateUsers(2);
+            //CreateIngredients();
+
             CoffeeMachineManager.ShowUsers();
             CoffeeMachineManager.ShowCoffees();
 

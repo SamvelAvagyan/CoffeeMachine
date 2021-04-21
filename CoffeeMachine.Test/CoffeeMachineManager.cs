@@ -35,8 +35,6 @@ namespace CoffeeMachine.Test
             user = userRepo.GetById(id);
             order.User = user;
             order.UserId = user.Id;
-
-            Console.WriteLine($"{user.Name}, {order.User.Name}, {order.UserId}");
         }
 
         private static bool InsertCoins()
@@ -216,6 +214,10 @@ namespace CoffeeMachine.Test
                 orderRepo.Delete(order.Id);
                 StartFromSelectingCoffee();
             }
+            else
+            {
+                Console.WriteLine($"Your tip back is: {sum - coffee.Price}, Thank you!");
+            }
         }
 
         public static void ShowUsers()
@@ -240,7 +242,7 @@ namespace CoffeeMachine.Test
             {
                 Console.WriteLine($"Id: {coffee.Id}, Name: {coffee.Name}, Price: {coffee.Price}, WaterPortion: {coffee.WaterPortion}" +
                     $", SugarPortion: {coffee.SugarPortion}, CoffeePortion: {coffee.CoffeePortion}");
-                Console.WriteLine("--------------------------------------------------------------------------------");
+                Console.Write("--------------------------------------------------------------------------------");
             }
 
             Console.WriteLine("==========================================================================");

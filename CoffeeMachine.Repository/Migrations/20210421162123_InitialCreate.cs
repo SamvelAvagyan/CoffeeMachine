@@ -24,18 +24,17 @@ namespace CoffeeMachine.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Stores",
+                name: "Ingredients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Water = table.Column<double>(type: "REAL", nullable: false),
-                    Sugar = table.Column<double>(type: "REAL", nullable: false),
-                    Coffee = table.Column<double>(type: "REAL", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Quantity = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stores", x => x.Id);
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,15 +50,54 @@ namespace CoffeeMachine.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CoffeeId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Coffees_CoffeeId",
+                        column: x => x.CoffeeId,
+                        principalTable: "Coffees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CoffeeId",
+                table: "Orders",
+                column: "CoffeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Coffees");
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
-                name: "Stores");
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Coffees");
 
             migrationBuilder.DropTable(
                 name: "Users");
