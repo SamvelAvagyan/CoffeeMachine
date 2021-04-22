@@ -71,6 +71,7 @@ namespace CoffeeMachine.Test
             if (user.Balance < sum)
             {
                 Console.WriteLine("You don't have enough money in your balance");
+                sum = 0;
                 return false;
             }
             else
@@ -156,7 +157,7 @@ namespace CoffeeMachine.Test
             {
                 SelectCoffee();
                 Ready();
-                AskToEnterZero();
+                AskToTypeEnterOrZero();
             }
             else
             {
@@ -170,7 +171,7 @@ namespace CoffeeMachine.Test
             {
                 SelectCoffee();
                 Ready();
-                AskToEnterZero();
+                AskToTypeEnterOrZero();
             }
             else
             {
@@ -182,7 +183,7 @@ namespace CoffeeMachine.Test
         {
             SelectCoffee();
             Ready();
-            AskToEnterZero();
+            AskToTypeEnterOrZero();
         }
 
         private static void Ready()
@@ -193,7 +194,7 @@ namespace CoffeeMachine.Test
             userRepo.Update(user);
         }
 
-        private static void AskToEnterZero()
+        private static void AskToTypeEnterOrZero()
         {
             Console.Write("If you want to change or choose another coffee, then enter 0, else type enter: ");
             string a;

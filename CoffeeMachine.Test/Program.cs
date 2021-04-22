@@ -4,6 +4,7 @@ using CoffeeMachine.Repository.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace CoffeeMachine.Test
@@ -15,9 +16,9 @@ namespace CoffeeMachine.Test
         static void Main(string[] args)
         {
             CreateHostBuilder().Build();
-            //CreateCoffees(10);
-            //CreateUsers(3);
-            //CreateIngredients();
+            CreateCoffees(10);
+            CreateUsers(3);
+            CreateIngredients();
 
             CoffeeMachineManager.ShowUsers();
             CoffeeMachineManager.ShowCoffees();
@@ -27,17 +28,21 @@ namespace CoffeeMachine.Test
 
         public static IHostBuilder CreateHostBuilder() =>
             Host.CreateDefaultBuilder()
-                .ConfigureServices(services =>
-                {
-                    services.AddDbContext<CoffeeMachineDbContext>(con => con.UseSqlite(DataOptions.ConnectionString));
-                    services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-                    services.AddScoped<ICoffeeRepository, CoffeeRepository>();
-                    services.AddScoped<IOrderRepository, OrderRepository>();
-                    services.AddScoped<IUserRepository, UserRepository>();
-                    services.AddScoped<IIngredientRepository, IngredientRepository>();
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+            })
+            .ConfigureServices(services =>
+            {
+                services.AddDbContext<CoffeeMachineDbContext>(con => con.UseSqlite(DataOptions.ConnectionString));
+                services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+                services.AddScoped<ICoffeeRepository, CoffeeRepository>();
+                services.AddScoped<IOrderRepository, OrderRepository>();
+                services.AddScoped<IUserRepository, UserRepository>();
+                services.AddScoped<IIngredientRepository, IngredientRepository>();
 
-                    serviceProvider = services.BuildServiceProvider();
-                });
+                serviceProvider = services.BuildServiceProvider();
+            });
 
         private static void CreateCoffees(int count)
         {
