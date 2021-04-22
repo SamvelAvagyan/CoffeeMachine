@@ -100,11 +100,11 @@ namespace CoffeeMachine.Test
                 {
                     Console.Write("Please, insert correct id: ");
                 }
-                else if (sum > coffeeRepo.GetById(id).Price)
+                else if (sum < coffeeRepo.GetById(id).Price)
                 {
                     Console.Write("You didn't insert enough money for this coffee, please choose another coffee or type enter to restart: ");
                 }
-            } while (id == 0 || coffeeRepo.GetById(id) == null || sum > coffeeRepo.GetById(id).Price);
+            } while (id == 0 || coffeeRepo.GetById(id) == null || sum < coffeeRepo.GetById(id).Price);
 
             coffee = coffeeRepo.GetById(id);
 

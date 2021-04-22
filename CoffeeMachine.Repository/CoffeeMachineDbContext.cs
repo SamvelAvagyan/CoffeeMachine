@@ -14,7 +14,7 @@ namespace CoffeeMachine.Repository
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=C:\Users\Acer\CMDB.db");
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //    => options.UseSqlite(@"Data Source=C:\Users\Acer\DB.db");
     }
 }

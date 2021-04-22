@@ -3,6 +3,7 @@ using CoffeeMachine.Repository.Impl;
 using CoffeeMachine.Repository.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace CoffeeMachine.Test
@@ -13,10 +14,9 @@ namespace CoffeeMachine.Test
 
         static void Main(string[] args)
         {
-            Configure();
-
+            CreateHostBuilder().Build();
             //CreateCoffees(10);
-            //CreateUsers(2);
+            //CreateUsers(3);
             //CreateIngredients();
 
             CoffeeMachineManager.ShowUsers();
@@ -25,19 +25,19 @@ namespace CoffeeMachine.Test
             CoffeeMachineManager.Start();
         }
 
-        private static void Configure()
-        {
-            var services = new ServiceCollection();
+        public static IHostBuilder CreateHostBuilder() =>
+            Host.CreateDefaultBuilder()
+                .ConfigureServices(services =>
+                {
+                    services.AddDbContext<CoffeeMachineDbContext>(con => con.UseSqlite(DataOptions.ConnectionString));
+                    services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+                    services.AddScoped<ICoffeeRepository, CoffeeRepository>();
+                    services.AddScoped<IOrderRepository, OrderRepository>();
+                    services.AddScoped<IUserRepository, UserRepository>();
+                    services.AddScoped<IIngredientRepository, IngredientRepository>();
 
-            services.AddDbContext<CoffeeMachineDbContext>(con => con.UseSqlite(DataOptions.ConnectionString));
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<ICoffeeRepository, CoffeeRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IIngredientRepository, IngredientRepository>();
-
-            serviceProvider = services.BuildServiceProvider();
-        }
+                    serviceProvider = services.BuildServiceProvider();
+                });
 
         private static void CreateCoffees(int count)
         {
