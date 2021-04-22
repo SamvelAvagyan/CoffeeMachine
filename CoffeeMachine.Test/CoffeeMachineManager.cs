@@ -91,6 +91,7 @@ namespace CoffeeMachine.Test
 
                 if (a == "")
                 {
+                    sum = 0;
                     StartFromInsertingCoins();
                 }
 
